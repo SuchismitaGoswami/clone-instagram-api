@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@clone-instagram-api/auth-guard": ["libs/auth-guard/src/index.ts"],
+      "@clone-instagram-api/database": ["libs/database/src/index.ts"],
+      "@clone-instagram-api/kafka": ["libs/kafka/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
