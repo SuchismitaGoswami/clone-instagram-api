@@ -1,0 +1,64 @@
+{
+  "name": "clone-instagram-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/clone-instagram-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/clone-instagram-api",
+        "main": "apps/clone-instagram-api/src/main.ts",
+        "tsConfig": "apps/clone-instagram-api/tsconfig.app.json",
+        "assets": ["apps/clone-instagram-api/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/clone-instagram-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "clone-instagram-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "clone-instagram-api:build:development"
+        },
+        "production": {
+          "buildTarget": "clone-instagram-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/clone-instagram-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/clone-instagram-api/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
